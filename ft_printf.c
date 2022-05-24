@@ -6,7 +6,7 @@
 /*   By: cyu-xian <cyu-xian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:34:58 by cyu-xian          #+#    #+#             */
-/*   Updated: 2022/05/24 15:11:30 by cyu-xian         ###   ########.fr       */
+/*   Updated: 2022/05/24 15:32:08 by cyu-xian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	format(char val, args)
 	else if (val == 'i')
 		ft_putnbr_fd((args, int), 1);
 	else if (val == 'u')
-		ft_putnbr_fd((args, unsigned long), 1)
+		ft_putnbr_fd((args, unsigned long), 1);
 	//x
 	//X
 	else if (val == '%')
