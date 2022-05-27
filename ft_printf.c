@@ -6,7 +6,7 @@
 /*   By: cyu-xian <cyu-xian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:34:58 by cyu-xian          #+#    #+#             */
-/*   Updated: 2022/05/24 15:32:08 by cyu-xian         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:56:24 by cyu-xian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	format(char val, args)
 		ft_putchar_fd((args, char), 1);
 	else if (val == 's')
 		ft_putstr_fd((args, char *), 1);
-	//p
+	else if (val == 'p')
+		ft_putstr_fd((args, unsigned long), 1);
 	else if (val == 'd')
 		ft_putnbr_fd((args, long), 1);
 	else if (val == 'i')
@@ -44,7 +45,7 @@ int	ft_printf(const char *ph, ...)
 			write(1, ph[i], 1);
 		else if (ph[i] == '%')
 		{
-			format(ph[i + 1]);
+			format(ph[i + 1], args);
 			i++;
 		}
 		i++;
