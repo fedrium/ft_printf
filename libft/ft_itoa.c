@@ -6,19 +6,17 @@
 /*   By: cyu-xian <cyu-xian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:33:19 by cyu-xian          #+#    #+#             */
-/*   Updated: 2022/05/09 11:38:18 by cyu-xian         ###   ########.fr       */
+/*   Updated: 2022/05/31 11:45:34 by cyu-xian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	memsize(int n)
+static	int	memsize(long n, int base)
 {
 	int	mem;
 
 	mem = 0;
-	if (n == -2147483648)
-		return (11);
 	if (n == 0)
 		return (1);
 	if (n < 0)
@@ -28,20 +26,15 @@ static	int	memsize(int n)
 	}
 	while (n > 0)
 	{
-		n /= 10;
+		n /= base;
 		mem++;
 	}
 	return (mem);
 }
 
-static	void	ft_putnbr_itoa(int nbr, char *str, int ctr)
+static	void	ft_putnbr_itoa(long nbr, char *str, int ctr, int base)
 {
-	if (nbr == -2147483648)
-	{
-		str[0] = '-';
-		str[1] = '2';
-		nbr = 147483648;
-	}
+
 	if (nbr == 0)
 		str[0] = '0';
 	if (nbr < 0)
@@ -51,23 +44,28 @@ static	void	ft_putnbr_itoa(int nbr, char *str, int ctr)
 	}
 	while (nbr > 0)
 	{
-		str[ctr--] = nbr % 10 + '0';
-		nbr /= 10;
+		str[ctr--] = hexa[nbr % base];
+		nbr /= base;
 	}
 }
 
-char	*ft_itoa(int n)
+int	ft_itoa(int n, int base)
 {
 	char	*str;
 	int		mem;
 	int		ctr;
+	long	nbr;
+	char	*hexa;
 
-	mem = memsize(n);
+	hexa = malloc(16 * sizeof(char));
+	hexa = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
+	nbr = (long)n;
+	mem = memsize(nbr, base);
 	str = malloc(sizeof(char) * (mem + 1));
 	if (str == NULL)
 		return (NULL);
 	str[mem] = '\0';
 	ctr = mem - 1;
-	ft_putnbr_itoa(n, str, ctr);
-	return (str);
+	ft_putnbr_itoa(nbr, str, ctr, base);
+	ft_putstr_fd(str, 1);
 }

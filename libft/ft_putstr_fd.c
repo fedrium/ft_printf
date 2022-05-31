@@ -6,13 +6,13 @@
 /*   By: cyu-xian <cyu-xian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 11:47:09 by cyu-xian          #+#    #+#             */
-/*   Updated: 2022/05/09 11:44:55 by cyu-xian         ###   ########.fr       */
+/*   Updated: 2022/05/30 13:19:58 by cyu-xian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 
@@ -22,4 +22,5 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, &s[i], 1);
 		i++;
 	}
+	return (i);
 }

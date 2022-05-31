@@ -6,28 +6,31 @@
 /*   By: cyu-xian <cyu-xian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:34:58 by cyu-xian          #+#    #+#             */
-/*   Updated: 2022/05/27 16:56:24 by cyu-xian         ###   ########.fr       */
+/*   Updated: 2022/05/31 12:12:19 by cyu-xian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft/libft.h"
 
-int	format(char val, args)
+int	format(char val, va_list args)
 {
 	if (val == 'c')
-		ft_putchar_fd((args, char), 1);
+		return (ft_putchar_fd((args, char), 1));
 	else if (val == 's')
 		ft_putstr_fd((args, char *), 1);
 	else if (val == 'p')
-		ft_putstr_fd((args, unsigned long), 1);
+		ft_itoa((args, unsigned long), 16);
 	else if (val == 'd')
-		ft_putnbr_fd((args, long), 1);
+		ft_itoa((args, long), 10);
 	else if (val == 'i')
-		ft_putnbr_fd((args, int), 1);
+		ft_itoa((args, int), 10);
 	else if (val == 'u')
-		ft_putnbr_fd((args, unsigned long), 1);
-	//x
-	//X
+		ft_itoa((args, unsigned int), 10);
+	else if (val == 'x')
+		ft_itoa((args, size_t), 16);
+	else if (val == 'X')
+		ft_itoa((args, size_t), 16);
 	else if (val == '%')
 		ft_putchar_fd('%', 1);
 }
