@@ -6,7 +6,7 @@
 /*   By: cyu-xian <cyu-xian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 11:47:09 by cyu-xian          #+#    #+#             */
-/*   Updated: 2022/05/30 13:19:58 by cyu-xian         ###   ########.fr       */
+/*   Updated: 2022/06/03 13:36:41 by cyu-xian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_putstr_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
+	if (!s)
+		s = "(null)";
 	while (s[i] != '\0')
 	{
 		write(fd, &s[i], 1);

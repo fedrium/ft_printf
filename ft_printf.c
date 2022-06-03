@@ -6,7 +6,7 @@
 /*   By: cyu-xian <cyu-xian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:34:58 by cyu-xian          #+#    #+#             */
-/*   Updated: 2022/05/31 12:12:19 by cyu-xian         ###   ########.fr       */
+/*   Updated: 2022/06/03 13:59:23 by cyu-xian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,42 +15,66 @@
 
 int	format(char val, va_list args)
 {
+	char	*str;
+	int		var;
+
 	if (val == 'c')
-		return (ft_putchar_fd((args, char), 1));
+		return (ft_putchar_fd(va_arg(args, int), 1));
 	else if (val == 's')
-		ft_putstr_fd((args, char *), 1);
+		return (ft_putstr_fd(va_arg(args, char *), 1));
 	else if (val == 'p')
-		ft_itoa((args, unsigned long), 16);
-	else if (val == 'd')
-		ft_itoa((args, long), 10);
-	else if (val == 'i')
-		ft_itoa((args, int), 10);
+		str = ft_itoa_ptr(va_arg(args, unsigned long), 16, "0123456789abcdef");
+	else if (val == 'i' || val == 'd')
+		str = ft_itoa(va_arg(args, int), 10, "0123456789");
 	else if (val == 'u')
-		ft_itoa((args, unsigned int), 10);
+		str = ft_itoa_ui(va_arg(args, unsigned int), 10, "0123456789");
 	else if (val == 'x')
-		ft_itoa((args, size_t), 16);
+		str = ft_itoa_ui(va_arg(args, size_t), 16, "0123456789abcdef");
 	else if (val == 'X')
-		ft_itoa((args, size_t), 16);
+		str = ft_itoa_ui(va_arg(args, size_t), 16, "0123456789ABCDEF");
 	else if (val == '%')
-		ft_putchar_fd('%', 1);
+		return (ft_putchar_fd('%', 1));
+	else
+		return (-1);
+	var = ft_putstr_fd(str, 1);
+	free(str);
+	return (var);
 }
 
 int	ft_printf(const char *ph, ...)
 {
-	va_list args;
-	int	i;
+	va_list	args;
+	int		i;
+	int		j;
+	int		k;
 
-	i = 1;
+	i = 0;
+	j = 0;
 	va_start(args, ph);
 	while (ph[i] != '\0')
 	{
 		if (ph[i] != '%')
-			write(1, ph[i], 1);
+		{
+			ft_putchar_fd(ph[i], 1);
+			i++;
+			j++;
+		}
 		else if (ph[i] == '%')
 		{
-			format(ph[i + 1], args);
-			i++;
+			k = format(ph[i + 1], args);
+			if (k == -1)
+				ft_putchar_fd(ph[i + 1], 1);
+			else
+				j = j + k;
+			i = i + 2;
 		}
-		i++;
 	}
+	return (j);
 }
+
+// int main()
+// {
+// 	ft_printf(" NULL %s NULL ", NULL);
+// 	printf(" NULL %s NULL ", NULL);
+// 	return (0);
+// }

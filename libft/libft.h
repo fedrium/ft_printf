@@ -6,7 +6,7 @@
 /*   By: cyu-xian <cyu-xian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 12:11:01 by cyu-xian          #+#    #+#             */
-/*   Updated: 2022/05/30 13:19:57 by cyu-xian         ###   ########.fr       */
+/*   Updated: 2022/06/03 13:46:35 by cyu-xian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strtrim(char const *s1, char const *set);
-char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	**ft_split(char const *s, char c);
+char	*ft_itoa(int n, int base, char *hexa);
+char	*ft_itoa_ptr(unsigned long n, int base, char *hexa);
+char	*ft_itoa_ui(unsigned int n, int base, char *hexa);
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);

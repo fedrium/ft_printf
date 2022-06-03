@@ -6,7 +6,7 @@
 /*   By: cyu-xian <cyu-xian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 15:20:15 by cyu-xian          #+#    #+#             */
-/*   Updated: 2022/05/20 13:35:53 by cyu-xian         ###   ########.fr       */
+/*   Updated: 2022/06/03 13:49:40 by cyu-xian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include <stdio.h>
 # include <stdarg.h>
 
-int	ft_printf(const char *, ...);
+int	ft_printf(const char *ph, ...);
 
 #endif

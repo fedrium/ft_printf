@@ -14,14 +14,14 @@ all:		${NAME}
 
 ${NAME}:	${OBJS}
 			make -C libft
-			${CC} ${CFLAGS} -c ${OBJS}
+			${CC} ${CFLAGS} -c ${SRCS}
 			ar rcs ${NAME} ${OBJS}
 
 clean:		
 			${RM} ${OBJS}
 
 fclean:		clean
-			${NAME}
+			${RM} ${NAME}
 
 re:			fclean all
 
